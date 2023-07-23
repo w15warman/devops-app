@@ -8,6 +8,6 @@ RUN apt-get -qq update && \
 
 RUN pip install flask
 
-COPY app.py /opt/
+COPY application/app.py /opt/
 
 ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080
