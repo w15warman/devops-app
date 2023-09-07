@@ -3,7 +3,7 @@ name: "Terraform Apply"
 on:
   push:
     branches:
-      - main
+      - develop
 
 env:
   TF_CLOUD_ORGANIZATION: "warman89"
