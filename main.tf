@@ -123,27 +123,32 @@ resource "aws_ecs_cluster" "ecs_cluster" {
   name = "my-ecs-cluster"
 }
 
-#resource "aws_ecs_task_definition" "ecs_task_definition" {
-#  family       = "my-ecs-task"
-#  network_mode = "bridge"
-#  cpu          = 1024
-#  memory       = 256
-#
-#  container_definitions = jsonencode([
-#    {
-#      name               = "terr-py-app"
+resource "aws_ecrpublic_repository" "w15-ecr-repo" {
+  repository_name = "w15-ecr-repo"
+}
+
+resource "aws_ecs_task_definition" "ecs_task_definition" {
+  family       = "my-ecs-task"
+  network_mode = "bridge"
+  cpu          = 256
+  memory       = 512
+
+  container_definitions = jsonencode([
+    {
+      name               = "terr-py-app"
 #      image              = "public.ecr.aws/a5u4v0o2/w15-container-repo:latest"
-#      essential          = true
-#      portMappings       = [
-#        {
-#          containerPort = 8080
-#          hostPort      = 8080
-#          protocol      = "tcp"
-#        }
-#      ]
-#    }
-#  ])
-#}
+      image              = aws_ecrpublic_repository.w15-ecr-repo.repository_uri
+      essential          = true
+      portMappings       = [
+        {
+          containerPort = 8080
+          hostPort      = 8080
+          protocol      = "tcp"
+        }
+      ]
+    }
+  ])
+}
 
 #resource "aws_ecs_service" "ecs_service" {
 #  name                               = "my-ecs-service"
