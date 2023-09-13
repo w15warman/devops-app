@@ -137,6 +137,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
     {
       name               = "terr-py-app"
 #      image              = "public.ecr.aws/a5u4v0o2/w15-container-repo:latest"
+#      image              = "public.ecr.aws/a5u4v0o2/w15-ecr-repo:latest"
       image              = aws_ecrpublic_repository.w15-ecr-repo.repository_uri
       essential          = true
       portMappings       = [
@@ -150,23 +151,23 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   ])
 }
 
-#resource "aws_ecs_service" "ecs_service" {
-#  name                               = "my-ecs-service"
-#  cluster                            = aws_ecs_cluster.ecs_cluster.id
-#  task_definition                    = aws_ecs_task_definition.ecs_task_definition.arn
-#  scheduling_strategy                = "REPLICA"
-#  desired_count                      = 1
-#  launch_type                        = "EC2"
-#  deployment_minimum_healthy_percent = 0
-#
-#  force_new_deployment = true
-#  placement_constraints {
-#    type = "distinctInstance"
-#  }
-#
-#  triggers = {
-#    redeployment = timestamp()
-#  }
-#
-#  depends_on = [aws_autoscaling_group.ecs_asg]
-#}
+resource "aws_ecs_service" "ecs_service" {
+  name                               = "my-ecs-service"
+  cluster                            = aws_ecs_cluster.ecs_cluster.id
+  task_definition                    = aws_ecs_task_definition.ecs_task_definition.arn
+  scheduling_strategy                = "REPLICA"
+  desired_count                      = 1
+  launch_type                        = "EC2"
+  deployment_minimum_healthy_percent = 0
+
+  force_new_deployment = true
+  placement_constraints {
+    type = "distinctInstance"
+  }
+
+  triggers = {
+    redeployment = timestamp()
+  }
+
+  depends_on = [aws_autoscaling_group.ecs_asg]
+}
