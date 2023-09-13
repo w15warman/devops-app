@@ -151,6 +151,12 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   ])
 }
 
+variable "timestamp_id" {
+    type = string
+    default = ""
+}
+
+
 resource "aws_ecs_service" "ecs_service" {
   name                               = "my-ecs-service"
   cluster                            = aws_ecs_cluster.ecs_cluster.id
@@ -166,7 +172,8 @@ resource "aws_ecs_service" "ecs_service" {
   }
 
   triggers = {
-    redeployment = timestamp()
+#    redeployment = timestamp()
+    redeployment = true
   }
 
   depends_on = [aws_autoscaling_group.ecs_asg]
