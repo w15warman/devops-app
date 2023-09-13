@@ -9,7 +9,7 @@ terraform {
       version = "3.4.3"
     }
   }
-  required_version = ">= 1.5.7"
+  required_version = ">= 1.5.2"
 }
 
 provider "aws" {
