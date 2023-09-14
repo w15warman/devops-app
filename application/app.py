@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return "Welcome to the simple app! v2"
+    return "Welcome to the simple app! v3"
 
 
 @app.route('/how_are_you')
