@@ -1,5 +1,4 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:143068812504:task-definition/my-ecs-task:17",
     "containerDefinitions": [
         {
             "name": "terr-py-app",
@@ -20,13 +19,9 @@
     ],
     "family": "my-ecs-task",
     "networkMode": "bridge",
-    "revision": 17,
     "volumes": [],
-    "status": "ACTIVE",
     "placementConstraints": [],
     "cpu": "256",
     "memory": "512",
-    "registeredAt": "2023-09-13T19:24:35.761Z",
-    "registeredBy": "arn:aws:iam::143068812504:user/w15",
     "tags": []
 }
