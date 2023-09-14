@@ -24,10 +24,6 @@
     "volumes": [],
     "status": "ACTIVE",
     "placementConstraints": [],
-    "compatibilities": [
-        "EXTERNAL",
-        "EC2"
-    ],
     "cpu": "256",
     "memory": "512",
     "registeredAt": "2023-09-13T19:24:35.761Z",

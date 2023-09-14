@@ -12,7 +12,7 @@ env:
 jobs:
   terraform:
     if: github.repository != 'hashicorp-education/learn-terraform-github-actions'
-    name: "Terraform Plan"
+    name: Terraform Plan
     runs-on: ubuntu-latest
     permissions:
       contents: read
